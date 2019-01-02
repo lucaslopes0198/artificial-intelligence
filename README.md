@@ -4,7 +4,7 @@ Algoritmos de IA aplicados no movimento da peça cavalo no tabuleiro de xadrez a
 
 # Inputs
 
-2 coordenadas sendo elas início e fim.
+2 coordenadas sendo elas início e fim;
 Seleção do algoritmo que irá utilizar.
 
 # Output
