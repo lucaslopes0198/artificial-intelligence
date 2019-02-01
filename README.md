@@ -1,12 +1,12 @@
-# Inteligencia Artificial
+# Artificial intelligence
 
-Algoritmos de IA aplicados no movimento da peça cavalo no tabuleiro de xadrez através de coordenadas.
+Algorithms applied in the movement of the knight on the chessboard through coordinates.
 
 # Inputs
 
-2 coordenadas sendo elas início e fim;
-Seleção do algoritmo que irá utilizar.
+2 coordinates being the beginning and the end;
+Selection of the algorithm you will use.
 
 # Output
 
-Caminho da origem ao destino por meio de coordenadas.
+Path from start to finish by coordinates.
