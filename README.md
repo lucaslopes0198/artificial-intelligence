@@ -1,12 +1,12 @@
 # Artificial intelligence
 
-Algorithms applied in the movement of the knight on the chessboard through coordinates.
+Algorithms applied in the movement of the knight on the chessboard through the coordinates.
 
 # Inputs
 
-2 coordinates being the beginning and the end;
-Selection of the algorithm you will use.
+2 coordinates being the start and the target.
+Algorithm you want to use.
 
 # Output
 
-Path from start to finish by coordinates.
+Path from start to target by coordinates.
