@@ -1,72 +1,44 @@
-import ProfundidadeLimitada as pl
-import ProfundidadeIterativa as pi
-import Amplitude as amp
-import Profundidade as pro
-import Bidirecional as bid
-import CustoUniforme as ctu
-import Greedy as gdy
-import aEstrela as est
+from algorithms import *
 
-def validPos(ini, fim):
-    if len(ini) != 2 or ini[0] > 8 or ini[1] > 8:
-        print("Informe 2 números de 0 a 8 separados por espaço.")
-        quit()
-    if len(fim) != 2 or fim[0] > 8 or fim[1] > 8:
-        print("Informe 2 números de 0 a 8 separados por espaço.")
-        quit()
+import re
 
-ini = [int(x) for x in input("Inicio: ").split()]
-fim = [int(x) for x in input("Fim: ").split()]
+class Main:
+    def __init__(self):
+        self.choices = {"1": "breadthFirst", "2": "bidirectional", "3": "depthFirst", "4": "limitedDepth", "5": "iterativeDepth", "6": "uniformCost", "7": "greedy", "8": "aStar"}
 
-validPos(ini, fim)
+    def solution(self):
+        self.chosenAlgorithm = input("\nChoose an option or insert another key to exit\n1 - Breadth-first\n2 - Bidirectional\n3 - Depth-first\n4 - Limited Depth\n5 - Iterative Depth\n6 - Uniform-cost\n7 - Greedy\n8 - A*\n9 - Change coordinates\n")
+        if self.chosenAlgorithm in self.choices:
+            search = eval(self.choices[self.chosenAlgorithm] + ".Search")()
+            solut = eval("search." + self.choices[self.chosenAlgorithm])(self.start, self.target)
+            print("\n" + solut + "\n")
+            return True
+        elif self.chosenAlgorithm == "9":
+            self.setCoordinates()
+            return True
+        else:
+            return False
 
-escolha = 0
-while True:
-    escolha = input("Escolha o algoritmo:\n1 - Amplitude\n2 - Bidirecional\n3 - Profundidade\n4 - Profundidade Limitada\n5 - Profundidade Iterativa\n6 - Custo Uniforme\n7 - Greedy\n8 - A*\n0 - Sair\n")
+    def setCoordinates(self):
+        print("Enter 2 numbers from 1 to 8 separated by space (e.g. 1 1)")
+        regexStart = None
+        while regexStart is None:
+            start = input("start: ")
+            regexStart = re.search("^[1-8] [1-8]$", start)
+        self.start = [int(x) for x in start.split()]
+        
+        regexTarget = None
+        while regexTarget is None:
+            target = input("target: ")
+            regexTarget = re.search("^[1-8] [1-8]$", target)
+        self.target = [int(x) for x in target.split()]
 
-    if escolha == "0":
-        break
 
-    if escolha == "1":
-        sol = amp.Busca()
-        s = sol.amplitude(ini, fim)
-        print("\n" + s + "\n")
+if __name__ == "__main__":
+    main = Main()
 
-    elif escolha == "2":
-        sol = bid.Busca()
-        s = sol.bidirecional(ini, fim)
-        print("\n" + s + "\n")
-
-    elif escolha == "3":
-        sol = pro.Busca()
-        s = sol.profundidade(ini, fim)
-        print("\n" + s + "\n")
-
-    elif escolha == "4":
-        sol = pl.Busca()
-        s = sol.profundidadeLimitada(ini, fim)
-        print("\n" + s + "\n")
-
-    elif escolha == "5":
-        limite = int(input("Informe o limite inicial: "))
-        sol = pi.Busca()
-        s = None
-        while s is None:
-            s = sol.profundidadeIterativa(ini, fim, limite)
-            limite += 2
-        print("\n" + s + "\n")
-
-    elif escolha == "6":
-        sol = ctu.Busca()
-        s = sol.custoUniforme(ini, fim)
-        print("\n" + s + "\n")
-
-    elif escolha == "7":
-        sol = gdy.Busca()
-        s = sol.greedy(ini, fim)
-        print("\n" + s + "\n")
-
-    elif escolha == "8":
-        sol = est.Busca()
-        s = sol.aEstrela(ini, fim)
-        print("\n" + s + "\n")
+    main.setCoordinates()
+    while True:
+        running = main.solution()
+        if not running:
+            break
